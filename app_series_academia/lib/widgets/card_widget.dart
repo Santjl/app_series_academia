@@ -9,24 +9,28 @@ class CardWidget extends StatelessWidget {
       {Key? key,
       this.imagePath,
       required this.height,
-      required this.width,
+      this.width = 360,
       this.borderRadius = 10,
       this.isMainCard = false,
       this.titleCardLeft,
       this.titleCardRight,
       this.semiTitleCardRight,
-      this.semiTitleCardLeft})
+      this.semiTitleCardLeft,
+      this.legendSemiTitle,
+      this.legendColumn = true})
       : super(key: key);
 
   final String? imagePath;
   final double height;
-  final double width;
+  final double? width;
   final double borderRadius;
   final bool isMainCard;
   final String? titleCardLeft;
   final String? titleCardRight;
   final String? semiTitleCardRight;
   final String? semiTitleCardLeft;
+  final String? legendSemiTitle;
+  final bool? legendColumn;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +46,7 @@ class CardWidget extends StatelessWidget {
                   ? [ColorConst.colorApp, ColorConst.colorLigthApp]
                   : [ColorConst.colorCard, ColorConst.colorLightCard])),
       child: Padding(
-        padding: const EdgeInsets.all(25.0),
+        padding: const EdgeInsets.all(15.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -58,14 +62,37 @@ class CardWidget extends StatelessWidget {
                               : FontsConst.fontDefault,
                         )
                       : const SizedBox(),
-                  semiTitleCardLeft != null
-                      ? Text(
-                          semiTitleCardLeft!,
-                          style: isMainCard == true
-                              ? FontsConst.fontDateAlternative
-                              : FontsConst.fontDate,
-                        )
-                      : const SizedBox()
+                  legendColumn == true ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      legendSemiTitle != null ?
+                      Text(legendSemiTitle!, style: FontsConst.fontLegendSemiTitle,)
+                      : const SizedBox(),
+                      semiTitleCardLeft != null
+                          ? Text(
+                              semiTitleCardLeft!,
+                              style: isMainCard == true
+                                  ? FontsConst.fontDateAlternative
+                                  : FontsConst.fontDate,
+                            )
+                          : const SizedBox(),
+                    ],
+                  ) :
+                  Row(
+                    children: [
+                      legendSemiTitle != null ?
+                      Text(legendSemiTitle!, style: FontsConst.fontLegendSemiTitle,)
+                      : const SizedBox(),
+                      semiTitleCardLeft != null
+                          ? Text(
+                              semiTitleCardLeft!,
+                              style: isMainCard == true
+                                  ? FontsConst.fontDateAlternative
+                                  : FontsConst.fontDate,
+                            )
+                          : const SizedBox(),
+                    ],
+                  )
                 ]),
             imagePath != null ? Image.asset(imagePath!) : 
             Column(

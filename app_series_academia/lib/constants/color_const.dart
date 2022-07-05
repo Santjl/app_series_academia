@@ -14,4 +14,6 @@ class ColorConst {
   static const Color colorWhite = Color(0xFFFFFFFF);
 
   static const Color colorBackground = Color(0xFFF5F5F5);
+
+  static const Color colorLegend = Color(0xFF4E4E4E);
 }

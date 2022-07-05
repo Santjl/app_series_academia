@@ -50,4 +50,8 @@ class FontsConst {
   static TextStyle get  fontDateAlternative => const TextStyle(
     fontSize: 15, color:  ColorConst.colorWhite, fontFamily: _amikoFont, fontWeight: FontWeight.w600
   );
+  
+  static TextStyle get  fontLegendSemiTitle => const TextStyle(
+    fontSize: 15, color:  ColorConst.colorLegend, fontFamily: _amikoFont, fontWeight: FontWeight.w600
+  );
 }
